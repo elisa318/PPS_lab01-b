@@ -105,4 +105,8 @@ public class LogicTest {
         assertEquals(new Pair<Integer, Integer>(newPosition.getX(), newPosition.getY()), knightCoordinate);
     }
 
+    @Test
+    public void closeGridTest() {
+        assertFalse(logic.hit(this.pawnCoordinate.getX(), this.pawnCoordinate.getY()));
+    }
 }
