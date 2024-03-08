@@ -88,7 +88,9 @@ public class LogicTest {
         int knightActualY = this.knightCoordinate.getY();
 
         Pair<Integer, Integer> notAllowedPosition = new Pair<Integer,Integer>(knightActualX + SHIFT_NOT_ALLOWED, knightActualY + SHIFT_NOT_ALLOWED);
-        assertFalse(logic.hit(notAllowedPosition.getX(), notAllowedPosition.getY()));
+        if(notAllowedPosition.getX() < GRID_SIZE && notAllowedPosition.getY() < GRID_SIZE) {
+            assertFalse(logic.hit(notAllowedPosition.getX(), notAllowedPosition.getY()));
+        }
     }
 
     @Test

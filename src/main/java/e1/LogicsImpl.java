@@ -6,19 +6,14 @@ public class LogicsImpl implements Logics {
 	
 	private final Pair<Integer,Integer> pawn;
 	private Pair<Integer,Integer> knight;
-	private final Random random = new Random();
+	private final RandomEmptyPairInitializer randomPair;
 	private final int size;
 	 
     public LogicsImpl(int size){
     	this.size = size;
-        this.pawn = this.randomEmptyPosition();
-        this.knight = this.randomEmptyPosition();	
-    }
-    
-	private final Pair<Integer,Integer> randomEmptyPosition(){
-    	Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
-    	// the recursive call below prevents clash with an existing pawn
-    	return this.pawn!=null && this.pawn.equals(pos) ? randomEmptyPosition() : pos;
+		this.randomPair = new RandomEmptyPairInitializer(this.size);
+		this.pawn = this.randomPair.getEmptyPair(null);
+		this.knight = this.randomPair.getEmptyPair(this.pawn);
     }
     
 	@Override
